@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Sprites/flying_dragon-red.png" type="Texture" id=1]
+[ext_resource path="res://End/End.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Background/parallax-mountain-bg.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Background/parallax-mountain-trees.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Background/parallax-mountain-foreground-trees.png" type="Texture" id=5]
+[ext_resource path="res://DragonDash_083544.mp3" type="AudioStream" id=6]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 128, 144, 128 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 144, 128, 144, 128 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 288, 128, 144, 128 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 288, 128, 144, 128 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Wiggle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.14858, 11.9755, -5.7885, 7.96329, -7.81809, 11.5251, -7.23953, 9.10651, 0.0237665 ]
+}
+
+[node name="End" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -7, 96 )
+rotation = 0.0249582
+scale = Vector2( 4, 4 )
+frames = SubResource( 2 )
+animation = "idle"
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+playback_speed = 1.5
+anims/Wiggle = SubResource( 6 )
+
+[node name="Score" type="Label" parent="."]
+margin_left = -470.0
+margin_top = -265.0
+margin_right = -430.0
+margin_bottom = -251.0
+rect_scale = Vector2( 3, 3 )
+text = "200"
+
+[node name="High" type="Label" parent="."]
+margin_left = 261.0
+margin_top = -275.0
+margin_right = 315.0
+margin_bottom = -261.0
+rect_scale = Vector2( 3, 3 )
+text = "200"
+align = 2
+
+[node name="Mountains1" type="Sprite" parent="."]
+position = Vector2( -19, 9 )
+scale = Vector2( 4, 4 )
+z_index = -10
+texture = ExtResource( 3 )
+
+[node name="Trees2" type="Sprite" parent="."]
+position = Vector2( -2570, -70 )
+scale = Vector2( 4, 4 )
+z_index = -10
+texture = ExtResource( 4 )
+offset = Vector2( 575, 15.5 )
+
+[node name="Trees4" type="Sprite" parent="."]
+position = Vector2( 19, -22 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true

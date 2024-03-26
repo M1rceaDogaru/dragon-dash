@@ -1,0 +1,238 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/flying_dragon-red.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Logo.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Up.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/RightClick.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/LeftClick.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Right.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Background/parallax-mountain-bg.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Background/parallax-mountain-trees.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Background/parallax-mountain-foreground-trees.png" type="Texture" id=10]
+[ext_resource path="res://DragonDash_083544.mp3" type="AudioStream" id=11]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 128, 144, 128 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 144, 128, 144, 128 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 288, 128, 144, 128 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 288, 128, 144, 128 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Wiggle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.14858, 11.9755, -5.7885, 7.96329, -7.81809, 11.5251, -7.23953, 9.10651, 0.0237665 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Flap"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flap:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -26.3012, 0.0, 45.6506 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flap:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -419, 155 ), Vector2( -388, 79 ), Vector2( -354, 173 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Wiggle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.14858, 11.9755, -5.7885, 7.96329, -7.81809, 11.5251, -7.23953, 9.10651, 0.0237665 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Dash"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dash:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -569, 154 ), Vector2( -376, 157 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Flap"
+
+[sub_resource type="Animation" id=10]
+resource_name = "Wiggle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.14858, 11.9755, -5.7885, 7.96329, -7.81809, 11.5251, -7.23953, 9.10651, 0.0237665 ]
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -7, 96 )
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 2 )
+animation = "idle"
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+playback_speed = 1.5
+anims/Wiggle = SubResource( 6 )
+
+[node name="Title" type="Sprite" parent="."]
+modulate = Color( 0.501961, 0.0156863, 0.0156863, 1 )
+position = Vector2( -2, -127 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Flap" type="Node2D" parent="."]
+
+[node name="Flap" type="AnimatedSprite" parent="Flap"]
+position = Vector2( -399.204, 106.467 )
+rotation = -0.165904
+frames = SubResource( 2 )
+animation = "fly"
+playing = true
+
+[node name="Flap2" type="AnimationPlayer" parent="Flap"]
+reset_on_save = false
+anims/Flap = SubResource( 7 )
+anims/Wiggle = SubResource( 8 )
+
+[node name="Up" type="Sprite" parent="Flap"]
+position = Vector2( -467, 242 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 4 )
+
+[node name="LeftClick" type="Sprite" parent="Flap"]
+position = Vector2( -386, 241 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+
+[node name="Dash" type="Node2D" parent="."]
+position = Vector2( 808, 10 )
+
+[node name="Dash" type="AnimatedSprite" parent="Dash"]
+position = Vector2( -529.501, 154.614 )
+rotation = 0.00596257
+frames = SubResource( 2 )
+animation = "fly"
+playing = true
+
+[node name="Dash2" type="AnimationPlayer" parent="Dash"]
+reset_on_save = false
+playback_speed = 2.5
+anims/Dash = SubResource( 11 )
+anims/Flap = SubResource( 9 )
+anims/Wiggle = SubResource( 10 )
+
+[node name="Right" type="Sprite" parent="Dash"]
+position = Vector2( -467, 242 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+
+[node name="RightClick" type="Sprite" parent="Dash"]
+position = Vector2( -386, 241 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Mountains1" type="Sprite" parent="."]
+position = Vector2( 15, 15 )
+scale = Vector2( 4, 4 )
+z_index = -10
+texture = ExtResource( 8 )
+
+[node name="Trees2" type="Sprite" parent="."]
+position = Vector2( -1136, 113 )
+scale = Vector2( 2, 2 )
+z_index = -2
+texture = ExtResource( 9 )
+offset = Vector2( 575, 15.5 )
+
+[node name="Trees4" type="Sprite" parent="."]
+position = Vector2( 16, 142 )
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 10 )
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+autoplay = true
